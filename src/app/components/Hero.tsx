@@ -73,7 +73,7 @@ export function Hero() {
               WebkitTextFillColor: "transparent",
             }}
           >
-            Yildiz
+            Avdi
           </span>
         </motion.h1>
 

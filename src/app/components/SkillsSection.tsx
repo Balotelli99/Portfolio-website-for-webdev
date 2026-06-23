@@ -3,7 +3,7 @@ import { useInView } from "motion/react";
 import { useRef } from "react";
 
 const techStack = [
-  { name: "PHP", note: "Backend logic, CMS systemen" },
+  { name: "PHP", note: "Backend logic" },
   { name: "JavaScript", note: "DOM, events, async" },
   { name: "Node.js", note: "Server-side JS, APIs" },
   { name: "React", note: "Component-based UI" },

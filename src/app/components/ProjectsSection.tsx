@@ -21,10 +21,10 @@ type Project = {
 const projects: Project[] = [
   {
     id: "01",
-    title: "CMS Webshop",
+    title: "Webshop",
     year: "2025",
     type: "E-commerce",
-    description: "Volledig functionele webshop met een custom CMS. Producten, categorieën en bestellingen beheerbaar via een eigen admin panel.",
+    description: "Volledig functionele webshop. Producten, categorieën en bestellingen beheerbaar via een eigen admin panel.",
     tags: ["PHP", "MySQL", "JavaScript", "CSS"],
     github: "#",
     live: "#",

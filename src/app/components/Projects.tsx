@@ -6,9 +6,9 @@ import { Github, ExternalLink } from "lucide-react";
 const projects = [
   {
     number: "01",
-    title: "CMS Webshop",
+    title: "Webshop",
     description:
-      "Een volledig functionele webshop met een custom Content Management System. Producten, categorieën en bestellingen beheerbaar via een admin panel.",
+      "Een volledig functionele webshop. Producten, categorieën en bestellingen beheerbaar via een admin panel.",
     tags: ["PHP", "MySQL", "JavaScript", "CSS"],
     github: "#",
     live: "#",

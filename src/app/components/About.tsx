@@ -110,7 +110,7 @@ export function About() {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Sultan
+                Sultan Avdi
               </span>
             </h2>
           </FadeIn>
