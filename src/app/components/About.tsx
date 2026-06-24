@@ -135,7 +135,7 @@ export function About() {
                 lineHeight: 1.8,
               }}
             >
-              Ik hou van projecten waarbij design en functionaliteit samenkomen. Of het nu een slimme webshop is, een AI-chatbot, of een festival app — ik pak het aan met energie en een scherp oog voor detail.
+              Ik hou van projecten waarbij design en functionaliteit samenkomen. Of het nu een slimme kiosk is, een AI-chatbot, of een festival app — ik pak het aan met energie en een scherp oog voor detail.
             </p>
           </FadeIn>
         </div>

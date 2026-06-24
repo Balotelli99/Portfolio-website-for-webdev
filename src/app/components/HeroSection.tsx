@@ -156,7 +156,7 @@ export function HeroSection() {
           color: "#8876aa", maxWidth: "380px", lineHeight: 1.7,
           margin: 0,
         }}>
-          Ik bouw websites die opvallen — van webshops tot festival apps, altijd met aandacht voor detail en animatie.
+          Ik bouw websites die opvallen — van kiosks tot festival apps, altijd met aandacht voor detail en animatie.
         </p>
         <div style={{ display: "flex", gap: "12px" }}>
           <button

@@ -5,6 +5,7 @@ import { Github, ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import uFestivalImg from "@/imports/Schermafbeelding_2026-06-17_105535.png";
 import saChatImg from "@/imports/Schermafbeelding_2026-06-17_113754.png";
+import kioskImg from "@/imports/kiosk.png";
 
 type Project = {
   id: string;
@@ -21,13 +22,14 @@ type Project = {
 const projects: Project[] = [
   {
     id: "01",
-    title: "Webshop",
+    title: "Kiosk",
     year: "2025",
     type: "E-commerce",
-    description: "Volledig functionele webshop. Producten, categorieën en bestellingen beheerbaar via een eigen admin panel.",
+    description: "Volledig functionele kiosk. Producten, categorieën en bestellingen beheerbaar via een eigen admin panel.",
     tags: ["PHP", "MySQL", "JavaScript", "CSS"],
     github: "#",
     live: "#",
+    image: kioskImg,
   },
   {
     id: "02",
@@ -42,16 +44,6 @@ const projects: Project[] = [
   },
   {
     id: "03",
-    title: "Kapper Website",
-    year: "2025",
-    type: "Business Website",
-    description: "Stijlvolle website voor een kapper met online boekingssysteem en responsive design.",
-    tags: ["HTML", "CSS", "JavaScript", "PHP"],
-    github: "#",
-    live: "#",
-  },
-  {
-    id: "04",
     title: "U Festival App",
     year: "2025",
     type: "Festival App",

@@ -6,9 +6,9 @@ import { Github, ExternalLink } from "lucide-react";
 const projects = [
   {
     number: "01",
-    title: "Webshop",
+    title: "Kiosk",
     description:
-      "Een volledig functionele webshop. Producten, categorieën en bestellingen beheerbaar via een admin panel.",
+      "Een volledig functionele kiosk. Producten, categorieën en bestellingen beheerbaar via een admin panel.",
     tags: ["PHP", "MySQL", "JavaScript", "CSS"],
     github: "#",
     live: "#",
@@ -26,16 +26,6 @@ const projects = [
   },
   {
     number: "03",
-    title: "Kapper Website",
-    description:
-      "Een stijlvolle website voor een kapper met online boekingssysteem, diensten overzicht en contactpagina. Volledig responsive design.",
-    tags: ["HTML", "CSS", "JavaScript", "PHP"],
-    github: "#",
-    live: "#",
-    color: "#a855f7",
-  },
-  {
-    number: "04",
     title: "U Festival App",
     description:
       "Een festival app voor Utrecht met artiesten lineup, tijdschema, locatie info en persoonlijk schema. Mobiel-first ontworpen.",
