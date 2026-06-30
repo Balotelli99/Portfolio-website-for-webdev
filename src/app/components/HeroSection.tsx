@@ -1,210 +1,158 @@
 import { motion } from "motion/react";
-import { useEffect, useRef } from "react";
-
-function scrollToSection(id: string) {
-  const container = document.getElementById("scroll-container");
-  const target = document.getElementById(id);
-  if (container && target) container.scrollTo({ top: target.offsetTop, behavior: "smooth" });
-}
 
 export function HeroSection() {
-  const cursorRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const move = (e: MouseEvent) => {
-      if (!cursorRef.current) return;
-      cursorRef.current.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
-    };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
-
   return (
     <section
       id="home"
       style={{
-        height: "100vh",
-        scrollSnapAlign: "start",
-        scrollSnapStop: "always",
+        minHeight: "100vh",
         position: "relative",
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-        padding: "0 40px 60px",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "120px 24px",
         overflow: "hidden",
-        background: "#08080f",
+        background: "#020617",
       }}
     >
-      {/* Custom cursor dot */}
-      <div
-        ref={cursorRef}
-        style={{
-          position: "fixed",
-          top: 0, left: 0,
-          width: "24px", height: "24px",
-          borderRadius: "50%",
-          border: "1px solid rgba(155,93,229,0.7)",
-          pointerEvents: "none",
-          zIndex: 9999,
-          transition: "transform 0.08s linear",
-          mixBlendMode: "difference",
-        }}
-      />
-
-      {/* Top-right label */}
+      {/* Background Orbs */}
       <div style={{
-        position: "absolute", top: "80px", right: "40px",
-        display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px",
-      }}>
-        <motion.span
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.8 }}
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.65rem", color: "#9b5de5",
-            letterSpacing: "0.15em", textTransform: "uppercase",
-          }}
-        >
-          Fullstack Webdev
-        </motion.span>
-        <motion.span
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.95 }}
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.65rem", color: "#3d3060",
-            letterSpacing: "0.1em",
-          }}
-        >
-          GLU Utrecht — 2026
-        </motion.span>
-      </div>
+        position: "absolute", top: "10%", left: "10%",
+        width: "40vw", height: "40vw",
+        background: "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
+        filter: "blur(60px)", pointerEvents: "none"
+      }} />
+      <div style={{
+        position: "absolute", bottom: "10%", right: "10%",
+        width: "35vw", height: "35vw",
+        background: "radial-gradient(circle, rgba(251,191,36,0.05) 0%, transparent 70%)",
+        filter: "blur(60px)", pointerEvents: "none"
+      }} />
 
-      {/* Vertical line accent */}
-      <motion.div
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 1.2, delay: 0.3, ease: "easeInOut" }}
-        style={{
-          position: "absolute", top: "80px", left: "40px",
-          width: "1px", height: "180px",
-          background: "linear-gradient(to bottom, #9b5de5, transparent)",
-          transformOrigin: "top",
-        }}
-      />
+      <div className="max-w-6xl mx-auto w-full text-center relative z-10">
+        <motion.div
+           initial={{ opacity: 0, scale: 0.9 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.75rem", color: "#10b981",
+            letterSpacing: "0.4em", textTransform: "uppercase",
+            background: "rgba(16,185,129,0.05)",
+            padding: "8px 24px", borderRadius: "100px",
+            border: "1px solid rgba(16,185,129,0.15)",
+            display: "inline-block", marginBottom: "32px"
+          }}>
+            Available for Projects — 2026
+          </span>
+        </motion.div>
 
-      {/* Big name */}
-      <div style={{ position: "relative", zIndex: 2 }}>
-        <div style={{ overflow: "hidden" }}>
+        <div style={{ position: "relative" }}>
           <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ y: 80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             style={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "'Outfit', sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(5rem, 18vw, 16rem)",
-              lineHeight: 0.85,
+              fontSize: "clamp(3.5rem, 12vw, 9rem)",
+              lineHeight: 0.9,
               letterSpacing: "-0.04em",
-              color: "#f0eeff",
+              color: "#f8fafc",
               margin: 0,
             }}
           >
-            SULTAN
+            CREATING <br />
+            <span style={{ 
+              color: "transparent", 
+              WebkitTextStroke: "1px rgba(248, 250, 252, 0.3)",
+              fontStyle: "italic" 
+            }}>DIGITAL</span> BOLDNESS
           </motion.h1>
         </div>
-        <div style={{ overflow: "hidden" }}>
-          <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+
+        <motion.p
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
+            color: "#94a3b8", maxWidth: "700px", lineHeight: 1.5,
+            margin: "40px auto 0", fontWeight: 400
+          }}
+        >
+          Sultan Avdi — Fullstack Developer gepassioneerd door impactvolle 
+          <span style={{ color: "#f8fafc", fontWeight: 600 }}> web experiences </span> 
+          en hoogwaardige interface designs.
+        </motion.p>
+
+        <motion.div 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          style={{ display: "flex", gap: "16px", justifyContent: "center", marginTop: "56px" }}
+        >
+          <button
+            onClick={() => window.scrollTo({ top: document.getElementById("projects")?.offsetTop, behavior: "smooth" })}
             style={{
-              fontFamily: "'Syne', sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(5rem, 18vw, 16rem)",
-              lineHeight: 0.85,
-              letterSpacing: "-0.04em",
-              WebkitTextStroke: "2px #9b5de5",
-              color: "transparent",
-              margin: 0,
+              padding: "16px 40px", borderRadius: "100px",
+              background: "#10b981", color: "#020617",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 700, fontSize: "1rem",
+              border: "none", cursor: "pointer",
+              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+              boxShadow: "0 20px 40px rgba(16, 185, 129, 0.2)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-4px)";
+              e.currentTarget.style.boxShadow = "0 30px 60px rgba(16, 185, 129, 0.3)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 20px 40px rgba(16, 185, 129, 0.2)";
             }}
           >
-            AVDI
-          </motion.h1>
-        </div>
+            Bekijk mijn werk
+          </button>
+          <button
+            onClick={() => window.scrollTo({ top: document.getElementById("contact")?.offsetTop, behavior: "smooth" })}
+            style={{
+              padding: "16px 40px", borderRadius: "100px",
+              background: "rgba(248, 250, 252, 0.03)", color: "#f8fafc",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 600, fontSize: "1rem",
+              border: "1px solid rgba(248, 250, 252, 0.1)", cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(248, 250, 252, 0.08)";
+              e.currentTarget.style.borderColor = "rgba(248, 250, 252, 0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(248, 250, 252, 0.03)";
+              e.currentTarget.style.borderColor = "rgba(248, 250, 252, 0.1)";
+            }}
+          >
+            Samenwerken?
+          </button>
+        </motion.div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Floating Badge */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.7 }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          marginTop: "40px",
-          flexWrap: "wrap",
-          gap: "20px",
+          position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)",
+          display: "flex", flexDirection: "column", alignItems: "center", gap: "12px",
+          opacity: 0.5
         }}
       >
-        <p style={{
-          fontFamily: "'Space Grotesk', sans-serif",
-          fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
-          color: "#8876aa", maxWidth: "380px", lineHeight: 1.7,
-          margin: 0,
-        }}>
-          Ik bouw websites die opvallen — van kiosks tot festival apps, altijd met aandacht voor detail en animatie.
-        </p>
-        <div style={{ display: "flex", gap: "12px" }}>
-          <button
-            onClick={() => scrollToSection("projects")}
-            style={{
-              padding: "12px 28px", borderRadius: "4px",
-              background: "#9b5de5", color: "#fff",
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: 600, fontSize: "0.85rem",
-              border: "none", cursor: "pointer",
-              letterSpacing: "0.05em",
-              transition: "background 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#7c3aed")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#9b5de5")}
-          >
-            Projecten ↗
-          </button>
-          <button
-            onClick={() => scrollToSection("contact")}
-            style={{
-              padding: "12px 28px", borderRadius: "4px",
-              background: "transparent", color: "#8876aa",
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: 600, fontSize: "0.85rem",
-              border: "1px solid #3d3060", cursor: "pointer",
-              letterSpacing: "0.05em",
-              transition: "border-color 0.2s, color 0.2s",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#9b5de5"; e.currentTarget.style.color = "#c8b8ff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#3d3060"; e.currentTarget.style.color = "#8876aa"; }}
-          >
-            Contact
-          </button>
-        </div>
+        <div style={{ width: "1px", height: "60px", background: "linear-gradient(to bottom, #10b981, transparent)" }} />
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.2em" }}>SCROLL</span>
       </motion.div>
-
-      {/* Horizontal line */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.2, delay: 0.5, ease: "easeInOut" }}
-        style={{
-          position: "absolute", bottom: "0", left: "0", right: "0",
-          height: "1px", background: "rgba(155,93,229,0.15)",
-          transformOrigin: "left",
-        }}
-      />
     </section>
   );
 }

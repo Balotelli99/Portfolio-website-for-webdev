@@ -17,136 +17,109 @@ const traits = ["Creatief", "Detail-gericht", "Leergierig", "Doorzetter", "Teams
 
 export function SkillsSection() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section
       id="skills"
       ref={ref}
       style={{
-        height: "100vh",
-        scrollSnapAlign: "start",
-        scrollSnapStop: "always",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "80px 40px 40px",
-        background: "#09090f",
+        padding: "160px 40px",
+        background: "#020617",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1200px", width: "100%", margin: "0 auto" }}>
-        {/* Header row */}
-        <div style={{
-          display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-          marginBottom: "60px", flexWrap: "wrap", gap: "16px",
+      <div className="max-w-6xl mx-auto w-full">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={inView ? { opacity: 1, y: 0 } : {}}
+           style={{ marginBottom: "80px" }}
+        >
+          <span style={{
+            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem",
+            color: "#10b981", letterSpacing: "0.3em", textTransform: "uppercase",
+            display: "block", marginBottom: "16px",
+          }}>
+            02 // EXPERTISE
+          </span>
+          <h2 style={{
+            fontFamily: "'Outfit', sans-serif", fontWeight: 700,
+            fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.1,
+            letterSpacing: "-0.02em", color: "#f8fafc", margin: 0,
+          }}>
+            Technical <span style={{ color: "#10b981" }}>Arsenal</span>
+          </h2>
+        </motion.div>
+
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", 
+          gap: "24px" 
         }}>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <span style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem",
-              color: "#9b5de5", letterSpacing: "0.2em", textTransform: "uppercase",
-              display: "block", marginBottom: "12px",
-            }}>
-              02 — Vaardigheden
-            </span>
-            <h2 style={{
-              fontFamily: "'Syne', sans-serif", fontWeight: 800,
-              fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 0.9,
-              letterSpacing: "-0.03em", color: "#f0eeff", margin: 0,
-            }}>
-              Tech<br />
-              <span style={{ color: "#9b5de5" }}>Stack</span>
-            </h2>
-          </motion.div>
-
-          {/* Traits */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-end" }}
-          >
-            {traits.map((trait, i) => (
-              <motion.span
-                key={trait}
-                initial={{ opacity: 0, x: 20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "0.9rem", color: "#3d3060",
-                  fontStyle: "italic",
-                }}
-              >
-                {trait}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Tech list — horizontal table style */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
           {techStack.map((tech, i) => (
             <motion.div
               key={tech.name}
-              initial={{ opacity: 0, x: -16 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="group"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "18px 0",
-                borderBottom: "1px solid rgba(155,93,229,0.1)",
-                cursor: "default",
-                transition: "padding-left 0.25s",
-                gap: "20px",
+                background: "rgba(15, 23, 42, 0.4)",
+                backdropFilter: "blur(10px)",
+                border: "1px solid rgba(16, 185, 129, 0.1)",
+                borderRadius: "20px",
+                padding: "32px",
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                cursor: "default"
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.paddingLeft = "12px")}
-              onMouseLeave={(e) => (e.currentTarget.style.paddingLeft = "0")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "rgba(16, 185, 129, 0.4)";
+                e.currentTarget.style.transform = "translateY(-8px)";
+                e.currentTarget.style.background = "rgba(16, 185, 129, 0.03)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(16, 185, 129, 0.1)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.background = "rgba(15, 23, 42, 0.4)";
+              }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-                <span style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.6rem", color: "#3d3060",
-                  minWidth: "24px",
-                }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span style={{
-                  fontFamily: "'Syne', sans-serif", fontWeight: 700,
-                  fontSize: "clamp(1rem, 2.5vw, 1.6rem)", color: "#f0eeff",
-                  letterSpacing: "-0.01em",
-                }}>
-                  {tech.name}
-                </span>
-              </div>
+              <div style={{
+                position: "absolute", top: "0", left: "0", width: "100%", height: "2px",
+                background: "linear-gradient(90deg, transparent, #10b981, transparent)",
+                opacity: 0, transition: "opacity 0.3s"
+              }} className="group-hover:opacity-100" />
+
               <span style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "0.8rem", color: "#8876aa",
-                textAlign: "right",
+                fontFamily: "'Outfit', sans-serif", fontWeight: 700,
+                fontSize: "1.5rem", color: "#f8fafc",
+                display: "block", marginBottom: "8px"
+              }}>
+                {tech.name}
+              </span>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.95rem", color: "#94a3b8",
+                lineHeight: 1.6, margin: 0
               }}>
                 {tech.note}
-              </span>
+              </p>
+              
+              <div style={{ 
+                marginTop: "24px", 
+                width: "40px", height: "1px", 
+                background: "rgba(16, 185, 129, 0.3)",
+                transition: "width 0.3s"
+              }} className="group-hover:w-full" />
             </motion.div>
           ))}
         </div>
-      </div>
-
-      {/* Big bg number */}
-      <div style={{
-        position: "absolute", bottom: "20px", right: "40px",
-        fontFamily: "'Syne', sans-serif", fontWeight: 800,
-        fontSize: "8rem", lineHeight: 1,
-        color: "rgba(155,93,229,0.04)",
-        userSelect: "none",
-      }}>
-        02
       </div>
     </section>
   );

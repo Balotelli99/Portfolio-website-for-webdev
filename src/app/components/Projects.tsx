@@ -6,32 +6,32 @@ import { Github, ExternalLink } from "lucide-react";
 const projects = [
   {
     number: "01",
-    title: "Kiosk",
+    title: "Kiosk POS System",
     description:
-      "Een volledig functionele kiosk. Producten, categorieën en bestellingen beheerbaar via een admin panel.",
-    tags: ["PHP", "MySQL", "JavaScript", "CSS"],
+      "Een geavanceerd kassasysteem (POS) met een klant-interface voor bestellingen en een krachtig beheerderspaneel voor voorraadbeheer.",
+    tags: ["PHP", "MySQL", "JavaScript", "PDO", "CSS"],
     github: "#",
-    live: "#",
+    live: "https://kiosk-demo.example.com",
     color: "#9b5de5",
   },
   {
     number: "02",
-    title: "SA Chat",
+    title: "SA Real-time Chat",
     description:
-      "Een real-time chat applicatie. Gebruikers kunnen berichten sturen en ontvangen in live chatrooms. Gebouwd met moderne web technologieën.",
-    tags: ["Node.js", "JavaScript", "CSS"],
+      "Een moderne real-time communicatie applicatie gebouwd met Node.js en WebSockets voor directe berichtuitwisseling in live rooms.",
+    tags: ["Node.js", "Socket.io", "Express", "JavaScript", "CSS"],
     github: "#",
-    live: null,
+    live: "https://sa-chat-demo.example.com",
     color: "#7c3aed",
   },
   {
     number: "03",
-    title: "U Festival App",
+    title: "U Festival PWA",
     description:
-      "Een festival app voor Utrecht met artiesten lineup, tijdschema, locatie info en persoonlijk schema. Mobiel-first ontworpen.",
-    tags: ["React", "JavaScript", "CSS"],
+      "Een interactieve Progressive Web App (PWA) met blokkenschema, persoonlijke favorieten en meertalige ondersteuning.",
+    tags: ["React", "Motion", "TailwindCSS", "JavaScript", "i18next"],
     github: "#",
-    live: "#",
+    live: "https://ufestival-rpa4.onrender.com",
     color: "#8b5cf6",
   },
 ];
@@ -75,10 +75,18 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         {project.number}
       </div>
 
-      {/* Placeholder image area */}
-      <div
-        className="w-full h-44 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden"
-        style={{ background: "rgba(155,93,229,0.06)", border: "1px solid rgba(155,93,229,0.1)" }}
+      {/* Preview area */}
+      <a
+        href={project.live || "#"}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full h-44 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden group/img-link"
+        style={{
+          background: "rgba(155,93,229,0.06)",
+          border: "1px solid rgba(155,93,229,0.1)",
+          display: "flex",
+          textDecoration: "none"
+        }}
       >
         <span
           style={{
@@ -94,7 +102,11 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           className="absolute bottom-3 left-3 w-2 h-2 rounded-full"
           style={{ background: project.color, opacity: 0.6 }}
         />
-      </div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-purple-900/20 opacity-0 group-hover/img-link:opacity-100 transition-opacity flex items-center justify-center">
+          <ExternalLink size={20} className="text-white" />
+        </div>
+      </a>
 
       {/* Content */}
       <h3

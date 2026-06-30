@@ -9,13 +9,10 @@ import { ContactSection } from "./components/ContactSection";
 export default function App() {
   return (
     /* MARKER-MAKE-KIT-INVOKED */
-    <div style={{ background: "#08080f", color: "#f0eeff" }}>
+    <div style={{ background: "#020617", color: "#f8fafc", minHeight: "100vh" }}>
       <Navbar />
       <main
         style={{
-          height: "100vh",
-          overflowY: "scroll",
-          scrollSnapType: "y mandatory",
           scrollBehavior: "smooth",
         }}
         id="scroll-container"

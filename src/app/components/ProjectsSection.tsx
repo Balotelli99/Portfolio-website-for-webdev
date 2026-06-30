@@ -12,7 +12,10 @@ type Project = {
   title: string;
   year: string;
   type: string;
+  role: string;
+  status: string;
   description: string;
+  features: string[];
   tags: string[];
   github: string;
   live: string | null;
@@ -22,33 +25,60 @@ type Project = {
 const projects: Project[] = [
   {
     id: "01",
-    title: "Kiosk",
+    title: "Kiosk POS System",
     year: "2025",
-    type: "E-commerce",
-    description: "Volledig functionele kiosk. Producten, categorieën en bestellingen beheerbaar via een eigen admin panel.",
-    tags: ["PHP", "MySQL", "JavaScript", "CSS"],
+    type: "E-commerce & Management",
+    role: "Full-stack Developer",
+    status: "Completed",
+    description: "Een geavanceerd kassasysteem (POS) ontworpen voor winkels en kiosken. Dit project omvat een volledige klant-interface voor bestellingen gekoppeld aan een krachtig admin-panel voor voorraad- en orderbeheer.",
+    features: [
+      "Dynamisch product- en categoriebeheer",
+      "Real-time orderstatus monitoring",
+      "Administratief dashboard met statistieken",
+      "Responsieve interface voor tablets en desktop",
+      "PDO Prepared statements voor database veiligheid"
+    ],
+    tags: ["PHP", "MySQL", "JavaScript", "PDO", "CSS"],
     github: "#",
-    live: "#",
+    live: "https://kiosk-demo.example.com", // Placeholder URL so it's clickable
     image: kioskImg,
   },
   {
     id: "02",
-    title: "SA Chat",
+    title: "SA Real-time Chat",
     year: "2025",
-    type: "Real-time App",
-    description: "Real-time chat applicatie met live chatrooms. Gebruikers verbinden en sturen berichten zonder page refresh.",
-    tags: ["Node.js", "JavaScript", "CSS"],
+    type: "Full-stack WebSockets",
+    role: "Backend & DevOps",
+    status: "Active Development",
+    description: "Een moderne chat-applicatie die gebruik maakt van WebSockets voor instant messaging. Het platform ondersteunt meerdere kamers en biedt een vloeiende ervaring zonder dat de pagina ververst hoeft te worden.",
+    features: [
+      "Low-latency real-time communicatie",
+      "Room-based chat architecture",
+      "Gebruikersidentificatie en status",
+      "Event-driven server architectuur",
+      "Modern, donker thema design"
+    ],
+    tags: ["Node.js", "Socket.io", "Express", "JavaScript", "CSS"],
     github: "#",
-    live: null,
+    live: "https://sa-chat-demo.example.com", // Placeholder URL so it's clickable
     image: saChatImg,
   },
   {
     id: "03",
-    title: "U Festival App",
+    title: "U Festival PWA",
     year: "2025",
-    type: "Festival App",
-    description: "Festival app voor Utrecht met artiesten lineup, tijdschema en persoonlijk schema. Mobiel-first.",
-    tags: ["React", "JavaScript", "CSS"],
+    type: "Interactive Event App",
+    role: "Frontend Architect",
+    status: "Live",
+    description: "Een uitgebreide festival-app voor Utrechtse evenementen. De focus ligt op gebruiksvriendelijkheid en snelheid, met een volledig interactief blokkenschema en meertalige ondersteuning voor internationale bezoekers.",
+    features: [
+      "Interactief blokkenschema (drag/scroll)",
+      "Persoonlijk programma maker",
+      "Meertaligheid (Nederlands & Engels)",
+      "Progressive Web App (PWA) mogelijkheden",
+      "Geoptimaliseerd voor mobiel gebruik"
+    ],
+    tags: ["React", "Motion", "TailwindCSS", "JavaScript", "i18next"],
     github: "#",
     live: "https://ufestival-rpa4.onrender.com",
     image: uFestivalImg,
@@ -57,231 +87,165 @@ const projects: Project[] = [
 
 export function ProjectsSection() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [active, setActive] = useState<string | null>(null);
-
-  const activeProject = projects.find((p) => p.id === active);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section
       id="projects"
       ref={ref}
       style={{
-        height: "100vh",
-        scrollSnapAlign: "start",
-        scrollSnapStop: "always",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        background: "#08080f",
+        minHeight: "100vh",
+        padding: "160px 24px",
+        background: "#020617",
         position: "relative",
-        overflow: "hidden",
       }}
     >
-      {/* Left — project list */}
-      <div style={{
-        display: "flex", flexDirection: "column", justifyContent: "center",
-        padding: "80px 40px 40px",
-        borderRight: "1px solid rgba(155,93,229,0.1)",
-      }}>
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5 }}
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.65rem", color: "#9b5de5",
-            letterSpacing: "0.2em", textTransform: "uppercase",
-            marginBottom: "40px", display: "block",
-          }}
+      <div className="max-w-6xl mx-auto w-full">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={inView ? { opacity: 1, y: 0 } : {}}
+           style={{ marginBottom: "100px", textAlign: "center" }}
         >
-          03 — Projecten
-        </motion.span>
+          <span style={{
+            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem",
+            color: "#10b981", letterSpacing: "0.4em", textTransform: "uppercase",
+            display: "block", marginBottom: "16px",
+          }}>
+            03 // CASE STUDIES
+          </span>
+          <h2 style={{
+            fontFamily: "'Outfit', sans-serif", fontWeight: 700,
+            fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.1,
+            letterSpacing: "-0.02em", color: "#f8fafc", margin: 0,
+          }}>
+            Selected <span style={{ color: "#10b981" }}>Works</span>
+          </h2>
+        </motion.div>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "120px" }}>
           {projects.map((project, i) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              onMouseEnter={() => setActive(project.id)}
-              onMouseLeave={() => setActive(null)}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               style={{
-                display: "flex", alignItems: "center",
-                justifyContent: "space-between",
-                padding: "22px 0",
-                borderBottom: "1px solid rgba(155,93,229,0.08)",
-                cursor: "pointer",
-                transition: "padding-left 0.3s",
-                paddingLeft: active === project.id ? "16px" : "0",
+                display: "grid",
+                gridTemplateColumns: i % 2 === 0 ? "1fr 1fr" : "1fr 1fr",
+                gap: "60px",
+                alignItems: "center"
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                <span style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.6rem",
-                  color: active === project.id ? "#9b5de5" : "#3d3060",
-                  transition: "color 0.3s",
-                }}>
-                  {project.id}
-                </span>
-                <span style={{
-                  fontFamily: "'Syne', sans-serif", fontWeight: 700,
-                  fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)",
-                  color: active === project.id ? "#f0eeff" : "#8876aa",
-                  letterSpacing: "-0.01em",
-                  transition: "color 0.3s",
+              {/* Media Part */}
+              <div style={{ order: i % 2 === 0 ? 1 : 2 }}>
+                <a
+                  href={project.live || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                  style={{
+                    display: "block",
+                    borderRadius: "32px",
+                    overflow: "hidden",
+                    background: "rgba(15, 23, 42, 0.5)",
+                    border: "1px solid rgba(16, 185, 129, 0.1)",
+                    aspectRatio: "16/10",
+                    position: "relative",
+                    textDecoration: "none"
+                  }}
+                >
+                   {project.image ? (
+                     <ImageWithFallback
+                       src={project.image}
+                       alt={project.title}
+                       style={{ 
+                         width: "100%", height: "100%", objectFit: "cover",
+                         transition: "transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)"
+                       }}
+                       className="group-hover:scale-105"
+                     />
+                   ) : (
+                     <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(16,185,129,0.3)" }}>// PREVIEW MOCKUP</span>
+                     </div>
+                   )}
+                   <div style={{
+                     position: "absolute", inset: 0,
+                     background: "linear-gradient(to top, rgba(2, 6, 23, 0.4), transparent)",
+                     opacity: 0, transition: "opacity 0.3s"
+                   }} className="group-hover:opacity-100" />
+                   
+                   <div style={{
+                     position: "absolute", bottom: "32px", right: "32px",
+                     opacity: 0, transform: "translateY(10px)", transition: "all 0.3s"
+                   }} className="group-hover:opacity-100 group-hover:translateY(0)">
+                      <div style={{
+                        padding: "12px 24px", background: "#f8fafc", color: "#020617",
+                        borderRadius: "100px", fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", fontWeight: 600
+                      }}>
+                         Go to Project ↗
+                      </div>
+                   </div>
+                </a>
+              </div>
+
+              {/* Text Part */}
+              <div style={{ order: i % 2 === 0 ? 2 : 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+                   <span style={{ color: "#10b981", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", fontWeight: 600 }}>{project.year}</span>
+                   <div style={{ width: "40px", height: "1px", background: "rgba(16,185,129,0.3)" }} />
+                   <span style={{ color: "#94a3b8", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", textTransform: "uppercase" }}>{project.type}</span>
+                </div>
+                
+                <h3 style={{
+                  fontFamily: "'Outfit', sans-serif", fontWeight: 700,
+                  fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#f8fafc",
+                  margin: "0 0 24px 0", letterSpacing: "-0.02em"
                 }}>
                   {project.title}
-                </span>
+                </h3>
+                
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
+                  color: "#94a3b8", lineHeight: 1.7, margin: "0 0 32px 0"
+                }}>
+                  {project.description}
+                </p>
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "40px" }}>
+                   {project.tags.map(tag => (
+                     <span key={tag} style={{
+                       padding: "6px 14px", borderRadius: "100px",
+                       background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.1)",
+                       color: "#10b981", fontSize: "0.75rem", fontFamily: "'Inter', sans-serif", fontWeight: 500
+                     }}>
+                        {tag}
+                     </span>
+                   ))}
+                </div>
+
+                <div style={{ display: "flex", gap: "32px" }}>
+                   <a href={project.github} style={{ 
+                     display: "flex", alignItems: "center", gap: "8px", 
+                     color: "#f8fafc", textDecoration: "none", fontSize: "0.85rem", fontWeight: 600,
+                     fontFamily: "'Inter', sans-serif", opacity: 0.6, transition: "opacity 0.2s"
+                   }} onMouseEnter={e => e.currentTarget.style.opacity = "1"} onMouseLeave={e => e.currentTarget.style.opacity = "0.6"}>
+                      <Github size={18} /> GITHUB REPO
+                   </a>
+                   {project.live && (
+                     <a href={project.live} style={{ 
+                       display: "flex", alignItems: "center", gap: "8px", 
+                       color: "#10b981", textDecoration: "none", fontSize: "0.85rem", fontWeight: 600,
+                       fontFamily: "'Inter', sans-serif", transition: "gap 0.2s"
+                     }} onMouseEnter={e => e.currentTarget.style.gap = "12px"} onMouseLeave={e => e.currentTarget.style.gap = "8px"}>
+                        LIVE PREVIEW <ExternalLink size={18} />
+                     </a>
+                   )}
+                </div>
               </div>
-              <span style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.65rem", color: "#3d3060",
-              }}>
-                {project.year}
-              </span>
             </motion.div>
           ))}
-        </div>
-      </div>
-
-      {/* Right — project detail */}
-      <div style={{
-        display: "flex", flexDirection: "column", justifyContent: "center",
-        padding: "80px 48px 40px",
-        position: "relative",
-      }}>
-        <AnimatePresence mode="wait">
-          {activeProject ? (
-            <motion.div
-              key={activeProject.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.3 }}
-              style={{ display: "flex", flexDirection: "column", gap: "24px" }}
-            >
-              {/* Preview */}
-              <div style={{
-                width: "100%", aspectRatio: "16/9",
-                borderRadius: "8px", overflow: "hidden",
-                border: "1px solid rgba(155,93,229,0.15)",
-                position: "relative",
-              }}>
-                {activeProject.image ? (
-                  <ImageWithFallback
-                    src={activeProject.image}
-                    alt={`Screenshot van ${activeProject.title}`}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
-                  />
-                ) : (
-                  <div style={{
-                    width: "100%", height: "100%", background: "#0f0f1a",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    <span style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "0.6rem", color: "rgba(155,93,229,0.3)",
-                      letterSpacing: "0.1em",
-                    }}>
-                      // screenshot volgt
-                    </span>
-                  </div>
-                )}
-                <div style={{
-                  position: "absolute", top: 0, left: 0, right: 0,
-                  height: "2px",
-                  background: "linear-gradient(90deg, #7c3aed, #9b5de5, transparent)",
-                }} />
-              </div>
-
-              <div>
-                <span style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.65rem", color: "#9b5de5",
-                  letterSpacing: "0.15em", textTransform: "uppercase",
-                }}>
-                  {activeProject.type}
-                </span>
-                <p style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "0.95rem", color: "#8876aa",
-                  lineHeight: 1.75, marginTop: "10px",
-                }}>
-                  {activeProject.description}
-                </p>
-              </div>
-
-              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                {activeProject.tags.map((tag) => (
-                  <span key={tag} style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.65rem", color: "#9b5de5",
-                    background: "rgba(155,93,229,0.08)",
-                    border: "1px solid rgba(155,93,229,0.15)",
-                    padding: "4px 10px", borderRadius: "3px",
-                  }}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div style={{ display: "flex", gap: "20px" }}>
-                <a href={activeProject.github} style={{
-                  display: "flex", alignItems: "center", gap: "6px",
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "0.85rem", color: "#8876aa",
-                  textDecoration: "none", transition: "color 0.2s",
-                }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#c8b8ff")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#8876aa")}
-                >
-                  <Github size={15} /> GitHub
-                </a>
-                {activeProject.live && (
-                  <a href={activeProject.live} style={{
-                    display: "flex", alignItems: "center", gap: "6px",
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: "0.85rem", color: "#8876aa",
-                    textDecoration: "none", transition: "color 0.2s",
-                  }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#c8b8ff")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#8876aa")}
-                  >
-                    <ExternalLink size={15} /> Live bekijken
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="placeholder"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              style={{ display: "flex", flexDirection: "column", gap: "16px" }}
-            >
-              <p style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "0.9rem", color: "#3d3060",
-                fontStyle: "italic",
-              }}>
-                ← Hover over een project voor details
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Big number bg */}
-        <div style={{
-          position: "absolute", bottom: "20px", right: "40px",
-          fontFamily: "'Syne', sans-serif", fontWeight: 800,
-          fontSize: "8rem", lineHeight: 1,
-          color: "rgba(155,93,229,0.04)",
-          userSelect: "none",
-        }}>
-          03
         </div>
       </div>
     </section>
