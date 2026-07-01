@@ -30,10 +30,11 @@ export function HeroSection() {
       }} />
 
       <div className="max-w-6xl mx-auto w-full text-center relative z-10">
+        {/* Status badge */}
         <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.6 }}
         >
           <span style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -42,60 +43,69 @@ export function HeroSection() {
             background: "rgba(16,185,129,0.05)",
             padding: "8px 24px", borderRadius: "100px",
             border: "1px solid rgba(16,185,129,0.15)",
-            display: "inline-block", marginBottom: "32px"
+            display: "inline-flex", alignItems: "center", gap: "8px",
+            marginBottom: "40px"
           }}>
-            Available for Projects — 2026
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#10b981", display: "inline-block", animation: "pulse 2s infinite" }} />
+            Beschikbaar voor projecten
           </span>
         </motion.div>
 
-        <div style={{ position: "relative" }}>
-          <motion.h1
-            initial={{ y: 80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            style={{
-              fontFamily: "'Outfit', sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(3.5rem, 12vw, 9rem)",
-              lineHeight: 0.9,
-              letterSpacing: "-0.04em",
-              color: "#f8fafc",
-              margin: 0,
-            }}
-          >
-            CREATING <br />
-            <span style={{ 
-              color: "transparent", 
-              WebkitTextStroke: "1px rgba(248, 250, 252, 0.3)",
-              fontStyle: "italic" 
-            }}>DIGITAL</span> BOLDNESS
-          </motion.h1>
-        </div>
+        {/* Name */}
+        <motion.h1
+          initial={{ y: 60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 800,
+            fontSize: "clamp(3.5rem, 10vw, 8rem)",
+            lineHeight: 0.95,
+            letterSpacing: "-0.03em",
+            color: "#f8fafc",
+            margin: "0 0 24px 0",
+          }}
+        >
+          Sultan{" "}
+          <span style={{
+            background: "linear-gradient(135deg, #10b981 0%, #34d399 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}>Avdi</span>
+        </motion.h1>
 
+        {/* Role */}
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
-            color: "#94a3b8", maxWidth: "700px", lineHeight: 1.5,
-            margin: "40px auto 0", fontWeight: 400
+            fontSize: "clamp(1rem, 2.5vw, 1.3rem)",
+            color: "#94a3b8",
+            maxWidth: "600px",
+            lineHeight: 1.6,
+            margin: "0 auto 56px",
+            fontWeight: 400,
           }}
         >
-          Sultan Avdi — Fullstack Developer gepassioneerd door impactvolle 
-          <span style={{ color: "#f8fafc", fontWeight: 600 }}> web experiences </span> 
-          en hoogwaardige interface designs.
+          Fullstack Developer in opleiding — gepassioneerd door{" "}
+          <span style={{ color: "#e2e8f0", fontWeight: 500 }}>moderne web experiences</span>{" "}
+          en strakke interface designs.
         </motion.p>
 
-        <motion.div 
+        {/* CTA Buttons */}
+        <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          style={{ display: "flex", gap: "16px", justifyContent: "center", marginTop: "56px" }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}
         >
           <button
-            onClick={() => window.scrollTo({ top: document.getElementById("projects")?.offsetTop, behavior: "smooth" })}
+            onClick={() => {
+              const el = document.getElementById("projects");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
             style={{
               padding: "16px 40px", borderRadius: "100px",
               background: "#10b981", color: "#020617",
@@ -117,13 +127,16 @@ export function HeroSection() {
             Bekijk mijn werk
           </button>
           <button
-            onClick={() => window.scrollTo({ top: document.getElementById("contact")?.offsetTop, behavior: "smooth" })}
+            onClick={() => {
+              const el = document.getElementById("contact");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
             style={{
               padding: "16px 40px", borderRadius: "100px",
-              background: "rgba(248, 250, 252, 0.03)", color: "#f8fafc",
+              background: "rgba(248, 250, 252, 0.04)", color: "#f8fafc",
               fontFamily: "'Inter', sans-serif",
               fontWeight: 600, fontSize: "1rem",
-              border: "1px solid rgba(248, 250, 252, 0.1)", cursor: "pointer",
+              border: "1px solid rgba(248, 250, 252, 0.12)", cursor: "pointer",
               transition: "all 0.3s ease",
             }}
             onMouseEnter={(e) => {
@@ -131,23 +144,23 @@ export function HeroSection() {
               e.currentTarget.style.borderColor = "rgba(248, 250, 252, 0.2)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(248, 250, 252, 0.03)";
-              e.currentTarget.style.borderColor = "rgba(248, 250, 252, 0.1)";
+              e.currentTarget.style.background = "rgba(248, 250, 252, 0.04)";
+              e.currentTarget.style.borderColor = "rgba(248, 250, 252, 0.12)";
             }}
           >
-            Samenwerken?
+            Neem contact op
           </button>
         </motion.div>
       </div>
 
-      {/* Floating Badge */}
+      {/* Scroll indicator */}
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         style={{
           position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)",
           display: "flex", flexDirection: "column", alignItems: "center", gap: "12px",
-          opacity: 0.5
+          opacity: 0.4
         }}
       >
         <div style={{ width: "1px", height: "60px", background: "linear-gradient(to bottom, #10b981, transparent)" }} />
